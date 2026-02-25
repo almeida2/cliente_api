@@ -1,4 +1,4 @@
-package com.fatec.cliente_api.persistencia;
+package com.fatec.cliente_api.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.fatec.cliente_api.model.Cliente;
 
 @SpringBootTest
 public class TUReq09CadastrarClienteTests {
