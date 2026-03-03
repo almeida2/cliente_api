@@ -16,7 +16,7 @@ import com.fatec.cliente_api.model.ClienteDTO;
 import com.fatec.cliente_api.repository.IClienteRepository;
 
 @SpringBootTest
-public class TIClienteServiceTests {
+public class TIReq09CadastrarClienteTests {
 
     @Autowired
     private ClienteService clienteService;
@@ -36,9 +36,9 @@ public class TIClienteServiceTests {
         ClienteDTO clienteDTO = new ClienteDTO(
                 "26501199000",
                 "Maria Oliveira",
-                "04290000",
-                "Avenida Presidente Tancredo Neves",
-                "Ipiranga",
+                "04280130",
+                "Rua Frei João",
+                "Vila Nair",
                 "São Paulo",
                 "100",
                 "maria@test.com");
@@ -51,12 +51,12 @@ public class TIClienteServiceTests {
         assertEquals("26501199000", clienteSalvo.getCpf());
 
         // 2. Confirma que a integração com ViaCEP preencheu o logradouro
-        // O CEP 04290-000 corresponde à "Avenida Presidente Tancredo Neves"
-        assertEquals("Rua Antônio Carlos da Fonseca", clienteSalvo.getEndereco());
+        // O CEP 04280130 corresponde à "Rua Frei João"
+        assertEquals("Rua Frei João", clienteSalvo.getEndereco());
 
         // 3. Confirma que o registro existe no banco de dados real (H2)
-        Optional<Cliente> noBanco = repository.findByCpf("26501199000");
-        assertTrue(noBanco.isPresent());
+        Optional<Cliente> c = repository.findByCpf("26501199000");
+        assertTrue(c.isPresent());
     }
 
     @Test

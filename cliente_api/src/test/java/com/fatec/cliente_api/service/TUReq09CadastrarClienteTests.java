@@ -22,7 +22,7 @@ import com.fatec.cliente_api.model.ClienteDTO;
 import com.fatec.cliente_api.model.Endereco;
 import com.fatec.cliente_api.repository.IClienteRepository;
 
-public class TUClienteServiceTests {
+public class TUReq09CadastrarClienteTests {
 
     @Mock
     private IClienteRepository repository;

@@ -19,13 +19,13 @@ public class TIEnderecoServiceTests {
 
     @Test
     void ct01_obtemLogradouroPorCep_com_sucesso() {
-        // Arrange
+        // Dado
         String cep = "01001000";
 
-        // Act
+        // Quando
         Optional<Endereco> resultado = enderecoService.obtemLogradouroPorCep(cep);
 
-        // Assert
+        // Entao
         assertTrue(resultado.isPresent(), "O endereço deve ser retornado pela API do ViaCEP");
         assertEquals("Praça da Sé", resultado.get().getLogradouro());
         assertEquals("São Paulo", resultado.get().getLocalidade());
@@ -35,12 +35,12 @@ public class TIEnderecoServiceTests {
     @Test
     void ct02_obtemLogradouroPorCep_invalido() {
         // Arrange
-        String cep = "00000000"; // CEP que não existe
+        String cep = "00000000"; // CEP invalido inexistente
 
         // Act
         Optional<Endereco> resultado = enderecoService.obtemLogradouroPorCep(cep);
 
         // Assert
-        assertTrue(resultado.isEmpty(), "A API real deveria retornar vazio para um CEP inexistente");
+        assertTrue(resultado.isEmpty(), "A API deve retornar vazio para um CEP inexistente");
     }
 }
