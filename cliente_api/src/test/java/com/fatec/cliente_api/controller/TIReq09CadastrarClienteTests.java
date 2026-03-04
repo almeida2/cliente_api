@@ -60,7 +60,7 @@ public class TIReq09CadastrarClienteTests {
         };
 
         // ********************************************************************
-        // When - quando confirmo o cadastro do cliente
+        // When - quando a operação de cadastro é confirmada
         // ********************************************************************
 
         ResponseEntity<ResponseApi<Cliente>> response = restTemplate.exchange(URL_BASE, HttpMethod.POST, request,
@@ -76,7 +76,8 @@ public class TIReq09CadastrarClienteTests {
         // Extrai o corpo da resposta
         ResponseApi<Cliente> apiResponse = response.getBody();
 
-        // Verifica se o corpo não é nulo e se o dado está presente
+        // Verifica se o corpo não é nulo e se as inf do cliente cadastrado foi
+        // retornada
         if (apiResponse == null || apiResponse.getData() == null) {
             throw new AssertionError("O corpo da resposta ou o objeto Cliente é nulo.");
         }
