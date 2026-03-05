@@ -44,15 +44,15 @@ public class TIReq09CadastrarClienteTests {
                 "maria@test.com");
 
         // Act
-        Cliente clienteSalvo = clienteService.cadastrar(clienteDTO);
+        Cliente novoCliente = clienteService.cadastrar(clienteDTO);
 
         // 1. Confirma que um id foi gerado no db
-        assertNotNull(clienteSalvo.getId());
-        assertEquals("26501199000", clienteSalvo.getCpf());
+        assertNotNull(novoCliente.getId());
+        assertEquals("26501199000", novoCliente.getCpf());
 
         // 2. Confirma que a integração com ViaCEP preencheu o logradouro
         // O CEP 04280130 corresponde à "Rua Frei João"
-        assertEquals("Rua Frei João", clienteSalvo.getEndereco());
+        assertEquals("Rua Frei João", novoCliente.getEndereco());
 
         // 3. Confirma que o registro existe no banco de dados real (H2)
         Optional<Cliente> c = repository.findByCpf("26501199000");
