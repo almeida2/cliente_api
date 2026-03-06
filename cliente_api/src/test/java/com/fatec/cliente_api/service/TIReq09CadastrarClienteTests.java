@@ -19,7 +19,7 @@ import com.fatec.cliente_api.repository.IClienteRepository;
 public class TIReq09CadastrarClienteTests {
 
     @Autowired
-    private ClienteService clienteService;
+    private IClienteService clienteService;
 
     @Autowired
     private IClienteRepository repository;

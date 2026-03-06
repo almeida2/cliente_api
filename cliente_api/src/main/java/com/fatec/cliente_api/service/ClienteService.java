@@ -50,20 +50,19 @@ public class ClienteService implements IClienteService {
 
         // 3. Converte DTO para entidade e persiste
         // as informacoes de endereco sao fornecidas automaticamente diretamente na
-        // interface
+        // interface o endereco, bairro, cidade sao obtidos novamente do viacep
         Cliente novoCliente = new Cliente();
         novoCliente.setCpf(clienteDTO.cpf());
         novoCliente.setNome(clienteDTO.nome());
         novoCliente.setCep(clienteDTO.cep());
-        novoCliente.setEndereco(clienteDTO.endereco());
-        novoCliente.setBairro(clienteDTO.bairro());
-        novoCliente.setCidade(clienteDTO.cidade());
+        novoCliente.setEndereco(endereco.get().getLogradouro());
+        novoCliente.setBairro(endereco.get().getBairro());
+        novoCliente.setCidade(endereco.get().getLocalidade());
         novoCliente.setComplemento(clienteDTO.complemento());
         novoCliente.setEmail(clienteDTO.email());
         novoCliente.setDataCadastro();
-        novoCliente.setEndereco(endereco.get().getLogradouro());
 
-        logger.info(">>>>>> clienteservico - cliente salvo com sucesso no repositório.");
+        logger.info(">>>>>> clienteservico - tentativa de executar o metodo save no repositório.");
         return repository.save(novoCliente);
     }
 
