@@ -43,7 +43,7 @@ public class TIReq09CadastrarClienteTests {
     }
 
     @Test
-    void ct02_cadastroComDadosValidos_retornaStatus201ECadastroComSucesso() {
+    void ct01_cadastroComDadosValidos_retornaStatus201ECadastroComSucesso() {
         // ********************************************************************
         // Given - dado que as informacoes de cliente sao validas
         // ********************************************************************
