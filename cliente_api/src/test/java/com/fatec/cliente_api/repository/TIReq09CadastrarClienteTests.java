@@ -3,6 +3,9 @@ package com.fatec.cliente_api.repository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,14 @@ public class TIReq09CadastrarClienteTests {
     void cleanUp() {
         // Limpa o banco de dados antes de cada teste para garantir isolamento
         repository.deleteAll();
+
+    }
+
+    public String obtemDataAtual() {
+        LocalDate dataAtual = LocalDate.now();
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String data = dataAtual.format(pattern);
+        return data;
     }
 
     /**
@@ -43,7 +54,7 @@ public class TIReq09CadastrarClienteTests {
         // 1. Confirma que um id foi gerado no db
         assertNotNull(novoCliente.getId());
         assertEquals("34525227095", novoCliente.getCpf());
-        assertEquals("05/03/2026", novoCliente.getDataCadastro());
+        assertEquals(obtemDataAtual(), novoCliente.getDataCadastro());
 
     }
 
