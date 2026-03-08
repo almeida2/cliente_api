@@ -1,10 +1,13 @@
 package com.fatec.cliente_api.controller;
 
+import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fatec.cliente_api.model.Cliente;
 import com.fatec.cliente_api.model.ClienteDTO;
+import com.fatec.cliente_api.model.Endereco;
 import com.fatec.cliente_api.service.IClienteService;
 import com.fatec.cliente_api.service.IEnderecoService;
 
@@ -68,6 +72,18 @@ public class ClienteController {
             // Captura qualquer outro erro inesperado
             ResponseApi<Cliente> response = new ResponseApi<>("Erro inesperado ao cadastrar cliente.");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    @GetMapping("/{cep}")
+    public ResponseEntity<ResponseApi<Endereco>> consultarCep(@PathVariable String cep) {
+        Optional<Endereco> e = enderecoService.obtemLogradouroPorCep(cep);
+        if (e.isPresent()) {
+            ResponseApi<Endereco> response = new ResponseApi<>(e.get(), "Endereco obtido com sucesso.");
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } else {
+            ResponseApi<Endereco> response = new ResponseApi<>("CEP não encontrado.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
 }
